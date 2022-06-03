@@ -20,7 +20,7 @@ public class HotelReservation {
      */
     public void addHotels() {
         hotelReservation.put("Lakewood", new Hotel("Lakewood",110,90));
-        hotelReservation.put("Bridgewood", new Hotel("Bridgewood",160,60));
+        hotelReservation.put("Bridgewood", new Hotel("Bridgewood",150,50));
         hotelReservation.put("Ridgewood", new Hotel("Ridgewood",220,150));
     }
 
