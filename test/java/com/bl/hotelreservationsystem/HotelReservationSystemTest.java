@@ -29,8 +29,14 @@ public class HotelReservationSystemTest {
         Assert.assertEquals(210 ,hotelReservation.findCheapestHotel("2020-09-10","2020-09-11"));
     }
     @Test
-    public void givenDateShouldBeFoundTwoCheapestHotel() {
+    public void givenDateShouldBeFoundTwoCheapestHotelBasedOnWeekdaysAndWeekend() {
         hotelReservation.addHotels();
-        Assert.assertEquals(220 ,hotelReservation.findCheapestHotel("2020-09-10","2020-09-11"));
+        Assert.assertEquals(200 ,hotelReservation.findCheapestHotelInWeekdaysAndWeekend("2020-09-11","2020-09-12"));
+    }
+
+    @Test
+    public void givenDateShouldNotBeFoundTwoCheapestHotelBasedOnWeekdaysAndWeekend() {
+        hotelReservation.addHotels();
+        Assert.assertEquals(250 ,hotelReservation.findCheapestHotelInWeekdaysAndWeekend("2020-09-11","2020-09-12"));
     }
 }

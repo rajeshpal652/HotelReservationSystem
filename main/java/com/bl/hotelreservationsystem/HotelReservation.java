@@ -32,6 +32,7 @@ public class HotelReservation {
         String date1 = scanner.next();
         String date2 = scanner.next();
         findCheapestHotel(date1, date2);
+        findCheapestHotelInWeekdaysAndWeekend(date1, date2);
     }
 
     /*
@@ -49,5 +50,29 @@ public class HotelReservation {
         System.out.println("Cheapest hotel is " + hotelList.get(0).getHotelName() + "Total Rates " + hotelList.get(0).getWeekdays_regularRate() * 2);
         return (hotelList.get(0).getWeekdays_regularRate() * 2);
 
+    }
+
+    /*
+    Method to find the cheapest hotel in provided dates based on weekdays and weekend.
+     */
+    public int findCheapestHotelInWeekdaysAndWeekend(String date1, String date2) {
+        DayOfWeek day1 = LocalDate.parse(date1).getDayOfWeek();
+        DayOfWeek day2 = LocalDate.parse(date2).getDayOfWeek();
+        List<Hotel> hotelList1 = hotelReservation
+                .values()
+                .stream()
+                .sorted(Comparator.comparing(Hotel -> Hotel.weekdays_regularRate))
+                .collect(Collectors.toList());
+
+        List<Hotel> hotelList2 = hotelReservation
+                .values()
+                .stream()
+                .sorted(Comparator.comparing(Hotel -> Hotel.weekend_regularRate))
+                .collect(Collectors.toList());
+
+        System.out.println("Cheapest hotel is " + hotelList1.get(0).getHotelName() + " and " + hotelList2.get(0).getHotelName()
+                + "\nTotal Rates : " + ((hotelList1.get(0).getWeekdays_regularRate()) + hotelList1.get(0).getWeekend_regularRate()));
+
+        return ((hotelList1.get(0).getWeekdays_regularRate()) + hotelList1.get(0).getWeekend_regularRate());
     }
 }
